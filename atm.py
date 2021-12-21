@@ -42,7 +42,7 @@ class StartPage(tk.Frame):
 
         self.controller.title('PENTAPY')
         self.controller.state('zoomed')
-        #self.controller.iconphoto(False,tk.PhotoImage(file='C:/Users/urban boutique/Documents/atm tutorial/atm.png'))
+        self.controller.iconphoto(True,tk.PhotoImage(file='/Users/shreyaspurohit/Downloads/ATM-master/atm.png'))
 
         heading_label = tk.Label(self,
                                                      text='PENTAPY ATM',
