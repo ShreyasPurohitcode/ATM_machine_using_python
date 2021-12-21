@@ -40,12 +40,12 @@ class StartPage(tk.Frame):
         tk.Frame.__init__(self, parent,bg='#AA14F0')
         self.controller = controller
 
-        self.controller.title('Securitex')
+        self.controller.title('PENTAPY')
         self.controller.state('zoomed')
         #self.controller.iconphoto(False,tk.PhotoImage(file='C:/Users/urban boutique/Documents/atm tutorial/atm.png'))
 
         heading_label = tk.Label(self,
-                                                     text='TANUSH ATM',
+                                                     text='PENTAPY ATM',
                                                      font=('orbitron',45,'bold'),
                                                      foreground='#000000',
                                                      background='#AA14F0')
