@@ -1,7 +1,7 @@
 import tkinter as tk
 import time
 
-current_balance = 1000
+current_balance = 10000
 
 class SampleApp(tk.Tk):
 
@@ -42,7 +42,7 @@ class StartPage(tk.Frame):
 
         self.controller.title('PENTAPY')
         self.controller.state('zoomed')
-        self.controller.iconphoto(True,tk.PhotoImage(file='/Users/shreyaspurohit/Downloads/ATM-master/atm.png'))
+        self.controller.iconphoto(True,tk.PhotoImage(file='/Users/shreyaspurohit/Programs/ATM-master/atm.png'))
 
         heading_label = tk.Label(self,
                                                      text='PENTAPY ATM',
@@ -59,6 +59,7 @@ class StartPage(tk.Frame):
                                                       font=('orbitron',17, 'bold'),
                                                       bg='#AA14F0',
                                                       fg='#000000')
+                                                      
         password_label.pack(pady=10)
 
         my_password = tk.StringVar()
@@ -66,6 +67,8 @@ class StartPage(tk.Frame):
                                                               textvariable=my_password,
                                                               font=('orbitron-bold',12),
                                                               width=22)
+
+
         password_entry_box.focus_set()
         password_entry_box.pack(ipady=7)
 
@@ -73,6 +76,7 @@ class StartPage(tk.Frame):
             password_entry_box.configure(fg='white', bg= 'black', show='*')
             
         password_entry_box.bind('<FocusIn>',handle_focus_in)
+        password_entry_box.bind('<Return>',lambda _: check_password())
 
         def check_password():
            if my_password.get() == '0000':
