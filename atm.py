@@ -5,20 +5,6 @@ import mysql.connector
 
 current_balance = 10000
 
-
-# # connecting database
-
-# mydb = mysql.connector.connect(
-#   host="localhost",
-#   user="root",
-#   password="Shreyasp@123"
-# )
-
-# print(mydb)
-
-# # adding cursor to the database
-# mycursor.execute("CREATE DATABASE atm-project")
-
 class SampleApp(tk.Tk):
 
     def __init__(self, *args, **kwargs):
