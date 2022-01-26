@@ -1,7 +1,23 @@
 import tkinter as tk
 import time
+from turtle import color
+import mysql.connector
 
 current_balance = 10000
+
+
+# # connecting database
+
+# mydb = mysql.connector.connect(
+#   host="localhost",
+#   user="root",
+#   password="Shreyasp@123"
+# )
+
+# print(mydb)
+
+# # adding cursor to the database
+# mycursor.execute("CREATE DATABASE atm-project")
 
 class SampleApp(tk.Tk):
 
@@ -37,7 +53,7 @@ class SampleApp(tk.Tk):
 class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent,bg='#AA14F0')
+        tk.Frame.__init__(self, parent,bg='#93FFD8')
         self.controller = controller
 
         self.controller.title('PENTAPY')
@@ -48,16 +64,16 @@ class StartPage(tk.Frame):
                                                      text='PENTAPY ATM',
                                                      font=('orbitron',45,'bold'),
                                                      foreground='#000000',
-                                                     background='#AA14F0')
+                                                     background='#93FFD8')
         heading_label.pack(pady=25)
 
-        space_label = tk.Label(self,height=4,bg='#AA14F0')
+        space_label = tk.Label(self,height=4,bg='#93FFD8')
         space_label.pack()
 
         password_label = tk.Label(self,
                                                       text='Enter your password',
                                                       font=('orbitron',17, 'bold'),
-                                                      bg='#AA14F0',
+                                                      bg='#93FFD8',
                                                       fg='#000000')
                                                       
         password_label.pack(pady=10)
@@ -136,32 +152,33 @@ class StartPage(tk.Frame):
 class MenuPage(tk.Frame):
 
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent,bg='#3d3d5c')
+        tk.Frame.__init__(self, parent,bg='#93FFD8')
         self.controller = controller
    
         heading_label = tk.Label(self,
-                                                     text='SECURITEX ATM',
+                                                     text='PENTAPY ATM',
                                                      font=('orbitron',45,'bold'),
-                                                     foreground='#ffffff',
-                                                     background='#3d3d5c')
+                                                     foreground='black',
+                                                     background='#93FFD8')
         heading_label.pack(pady=25)
 
         main_menu_label = tk.Label(self,
                                                            text='Main Menu',
                                                            font=('orbitron',13),
-                                                           fg='white',
-                                                           bg='#3d3d5c')
+                                                           fg='black',
+                                                           bg='#93FFD8')
         main_menu_label.pack()
 
         selection_label = tk.Label(self,
                                                            text='Please make a selection',
                                                            font=('orbitron',13),
-                                                           fg='white',
-                                                           bg='#3d3d5c',
+                                                           fg='black',
+                                                           bg='#93FFD8',
                                                            anchor='w')
         selection_label.pack(fill='x')
+        selection_label.place(relx=0.5, rely=0.15, anchor=tk.CENTER)
 
-        button_frame = tk.Frame(self,bg='#33334d')
+        button_frame = tk.Frame(self,bg='black')
         button_frame.pack(fill='both',expand=True)
 
         def withdraw():
@@ -175,6 +192,7 @@ class MenuPage(tk.Frame):
                                                             width=50,
                                                             height=5)
         withdraw_button.grid(row=0,column=0,pady=5)
+        withdraw_button.place(relx=0.5,rely=0.1,anchor=tk.CENTER)
 
         def deposit():
             controller.show_frame('DepositPage')
@@ -187,6 +205,7 @@ class MenuPage(tk.Frame):
                                                             width=50,
                                                             height=5)
         deposit_button.grid(row=1,column=0,pady=5)
+        deposit_button.place(relx=0.5,rely=0.3,anchor=tk.CENTER)
 
         def balance():
             controller.show_frame('BalancePage')
@@ -199,6 +218,7 @@ class MenuPage(tk.Frame):
                                                             width=50,
                                                             height=5)
         balance_button.grid(row=2,column=0,pady=5)
+        balance_button.place(relx=0.5,rely=0.5,anchor=tk.CENTER)
 
         def exit():
             controller.show_frame('StartPage')
@@ -211,6 +231,7 @@ class MenuPage(tk.Frame):
                                                             width=50,
                                                             height=5)
         exit_button.grid(row=3,column=0,pady=5)
+        exit_button.place(relx=0.5,rely=0.7,anchor=tk.CENTER)
 
 
         bottom_frame = tk.Frame(self,relief='raised',borderwidth=3)
@@ -245,25 +266,25 @@ class MenuPage(tk.Frame):
 class WithdrawPage(tk.Frame):
     
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent,bg='#3d3d5c')
+        tk.Frame.__init__(self, parent,bg='#93FFD8')
         self.controller = controller
 
 
         heading_label = tk.Label(self,
-                                                     text='SECURITEX ATM',
+                                                     text='PENTAPY ATM',
                                                      font=('orbitron',45,'bold'),
-                                                     foreground='#ffffff',
-                                                     background='#3d3d5c')
+                                                     foreground='#000000',
+                                                     background='#93FFD8')
         heading_label.pack(pady=25)
 
         choose_amount_label = tk.Label(self,
                                                            text='Choose the amount you want to withdraw',
                                                            font=('orbitron',13),
-                                                           fg='white',
-                                                           bg='#3d3d5c')
+                                                           fg='black',
+                                                           bg='#93FFD8')
         choose_amount_label.pack()
 
-        button_frame = tk.Frame(self,bg='#33334d')
+        button_frame = tk.Frame(self,bg='black')
         button_frame.pack(fill='both',expand=True)
 
         def withdraw(amount):
@@ -273,8 +294,8 @@ class WithdrawPage(tk.Frame):
             controller.show_frame('MenuPage')
             
         twenty_button = tk.Button(button_frame,
-                                                       text='20',
-                                                       command=lambda:withdraw(20),
+                                                       text='₹10',
+                                                       command=lambda:withdraw(10),
                                                        relief='raised',
                                                        borderwidth=3,
                                                        width=50,
@@ -282,8 +303,8 @@ class WithdrawPage(tk.Frame):
         twenty_button.grid(row=0,column=0,pady=5)
 
         forty_button = tk.Button(button_frame,
-                                                       text='40',
-                                                       command=lambda:withdraw(40),
+                                                       text='₹20',
+                                                       command=lambda:withdraw(20),
                                                        relief='raised',
                                                        borderwidth=3,
                                                        width=50,
@@ -291,8 +312,8 @@ class WithdrawPage(tk.Frame):
         forty_button.grid(row=1,column=0,pady=5)
 
         sixty_button = tk.Button(button_frame,
-                                                       text='60',
-                                                       command=lambda:withdraw(60),
+                                                       text='₹50',
+                                                       command=lambda:withdraw(50),
                                                        relief='raised',
                                                        borderwidth=3,
                                                        width=50,
@@ -300,8 +321,8 @@ class WithdrawPage(tk.Frame):
         sixty_button.grid(row=2,column=0,pady=5)
 
         eighty_button = tk.Button(button_frame,
-                                                       text='80',
-                                                       command=lambda:withdraw(80),
+                                                       text='₹100',
+                                                       command=lambda:withdraw(100),
                                                        relief='raised',
                                                        borderwidth=3,
                                                        width=50,
@@ -309,8 +330,8 @@ class WithdrawPage(tk.Frame):
         eighty_button.grid(row=3,column=0,pady=5)
 
         one_hundred_button = tk.Button(button_frame,
-                                                       text='100',
-                                                       command=lambda:withdraw(100),
+                                                       text='₹200',
+                                                       command=lambda:withdraw(200),
                                                        relief='raised',
                                                        borderwidth=3,
                                                        width=50,
@@ -318,8 +339,8 @@ class WithdrawPage(tk.Frame):
         one_hundred_button.grid(row=0,column=1,pady=5,padx=555)
 
         two_hundred_button = tk.Button(button_frame,
-                                                       text='200',
-                                                       command=lambda:withdraw(200),
+                                                       text='₹500',
+                                                       command=lambda:withdraw(500),
                                                        relief='raised',
                                                        borderwidth=3,
                                                        width=50,
@@ -327,8 +348,8 @@ class WithdrawPage(tk.Frame):
         two_hundred_button.grid(row=1,column=1,pady=5)
 
         three_hundred_button = tk.Button(button_frame,
-                                                       text='300',
-                                                       command=lambda:withdraw(300),
+                                                       text='₹2000',
+                                                       command=lambda:withdraw(2000),
                                                        relief='raised',
                                                        borderwidth=3,
                                                        width=50,
@@ -338,7 +359,11 @@ class WithdrawPage(tk.Frame):
         cash = tk.StringVar()
         other_amount_entry = tk.Entry(button_frame,
                                                               textvariable=cash,
-                                                              width=59,
+                                                              width=50,
+                                                              bg="white",
+                                                              fg="black",
+                                                              highlightcolor= "blue",
+                                                              font=('orbitron',17, 'bold'),
                                                               justify='right')
         other_amount_entry.grid(row=3,column=1,pady=5,ipady=30)
 
@@ -383,24 +408,24 @@ class WithdrawPage(tk.Frame):
 class DepositPage(tk.Frame):
     
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent,bg='#3d3d5c')
+        tk.Frame.__init__(self, parent,bg='#93FFD8')
         self.controller = controller
 
         heading_label = tk.Label(self,
-                                                     text='SECURITEX ATM',
+                                                     text='PENTAPY ATM',
                                                      font=('orbitron',45,'bold'),
-                                                     foreground='#ffffff',
-                                                     background='#3d3d5c')
+                                                     foreground='black',
+                                                     background='#93FFD8')
         heading_label.pack(pady=25)
 
-        space_label = tk.Label(self,height=4,bg='#3d3d5c')
+        space_label = tk.Label(self,height=4,bg='#93FFD8')
         space_label.pack()
 
         enter_amount_label = tk.Label(self,
                                                       text='Enter amount',
-                                                      font=('orbitron',13),
-                                                      bg='#3d3d5c',
-                                                      fg='white')
+                                                      font=('orbitron',13, 'bold'),
+                                                      bg='#93FFD8',
+                                                      fg='black')
         enter_amount_label.pack(pady=10)
 
         cash = tk.StringVar()
@@ -426,7 +451,7 @@ class DepositPage(tk.Frame):
                                                      height=3)
         enter_button.pack(pady=10)
 
-        two_tone_label = tk.Label(self,bg='#33334d')
+        two_tone_label = tk.Label(self,bg='black')
         two_tone_label.pack(fill='both',expand=True)
 
         bottom_frame = tk.Frame(self,relief='raised',borderwidth=3)
@@ -461,15 +486,15 @@ class DepositPage(tk.Frame):
 class BalancePage(tk.Frame):
     
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent,bg='#3d3d5c')
+        tk.Frame.__init__(self, parent,bg='#93FFD8')
         self.controller = controller
 
         
         heading_label = tk.Label(self,
-                                                     text='SECURITEX ATM',
+                                                     text='PENTAPY ATM',
                                                      font=('orbitron',45,'bold'),
-                                                     foreground='#ffffff',
-                                                     background='#3d3d5c')
+                                                     foreground='black',
+                                                     background='#93FFD8')
         heading_label.pack(pady=25)
 
         global current_balance
@@ -477,12 +502,12 @@ class BalancePage(tk.Frame):
         balance_label = tk.Label(self,
                                                   textvariable=controller.shared_data['Balance'],
                                                   font=('orbitron',13),
-                                                  fg='white',
-                                                  bg='#3d3d5c',
+                                                  fg='black',
+                                                  bg='#93FFD8',
                                                   anchor='w')
-        balance_label.pack(fill='x')
+        balance_label.pack(anchor=tk.CENTER)
 
-        button_frame = tk.Frame(self,bg='#33334d')
+        button_frame = tk.Frame(self,bg='black')
         button_frame.pack(fill='both',expand=True)
 
         def menu():
@@ -496,6 +521,7 @@ class BalancePage(tk.Frame):
                                                     width=50,
                                                     height=5)
         menu_button.grid(row=0,column=0,pady=5)
+        menu_button.place(relx=0.5, rely=0.2, anchor=tk.CENTER)
 
         def exit():
             controller.show_frame('StartPage')
@@ -508,6 +534,7 @@ class BalancePage(tk.Frame):
                                                  width=50,
                                                  height=5)
         exit_button.grid(row=1,column=0,pady=5)
+        exit_button.place(relx=0.5, rely=0.4, anchor=tk.CENTER)
 
         bottom_frame = tk.Frame(self,relief='raised',borderwidth=3)
         bottom_frame.pack(fill='x',side='bottom')
