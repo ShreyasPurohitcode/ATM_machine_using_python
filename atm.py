@@ -1,7 +1,6 @@
 import tkinter as tk
 import time
 from turtle import color
-import mysql.connector
 
 current_balance = 10000
 
